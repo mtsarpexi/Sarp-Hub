@@ -157,4 +157,25 @@ elseif game.PlaceId == 3956818381 then
     local CreditsSection = CreditsSection:NewSection("Credits")
 
     CreditsSection:NewLabel("Made by Sarp#5555")
+elseif game.PlaceId == 6737970321 then
+    local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
+    local Window = Library.CreateLib("Livetopia RP", "Sentinel")
+
+    -- PLAYER
+    local Player = Window:NewTab("Player")
+    local PlayerSection = Player:NewSection("Player")
+ 
+    PlayerSection:NewSlider("Walkspeed", "Changes the walkspeed", 250, 16, function(v)
+        game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = v
+    end)
+ 
+    PlayerSection:NewSlider("Jumppower", "Changes the jumppower", 250, 50, function(v)
+        game.Players.LocalPlayer.Character.Humanoid.JumpPower = v
+    end)
+
+    -- CREDITS
+    local CreditsSection = Window:NewTab("Credits")
+    local CreditsSection = CreditsSection:NewSection("Credits")
+
+    CreditsSection:NewLabel("Made by Sarp#5555")
 end
