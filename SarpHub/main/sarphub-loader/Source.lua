@@ -145,6 +145,13 @@ elseif game.PlaceId == 3956818381 then
         end
     end)
 
+    local Player = Window:NewTab("Player")
+    local PlayerSection = Player:NewSection("Player")
+ 
+    PlayerSection:NewSlider("Walkspeed", "Changes the walkspeed", 1000, 16, function(v)
+        game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = v
+    end)
+
     -- CREDITS
     local CreditsSection = Window:NewTab("Credits")
     local CreditsSection = CreditsSection:NewSection("Credits")
