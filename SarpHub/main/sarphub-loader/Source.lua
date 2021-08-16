@@ -1,18 +1,18 @@
 if game.PlaceId == 155615604 then
     local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
     local Window = Library.CreateLib("Prison Life", "Sentinel")
- 
+
     -- MAIN
     local Main = Window:NewTab("Main")
     local MainSection = Main:NewSection("Main")
  
-    MainSection:NewDropdown("Give Gun", "Gives the localplayer a gun", {"M9", "Remington 870", "AK-47"}, function(v)
+    MainSection:NewDropdown("Give Gun", "Gives the localplayer a gun.", {"M9", "Remington 870", "AK-47"}, function(v)
         local A_1 = game:GetService("Workspace")["Prison_ITEMS"].giver[v].ITEMPICKUP
         local Event = game:GetService("Workspace").Remote.ItemHandler
         Event:InvokeServer(A_1)
     end)
  
-    MainSection:NewDropdown("Infinite Ammo", "Gives your gun infinite ammo", {"M9", "Remington 870", "AK-47"}, function(v)
+    MainSection:NewDropdown("Infinite Ammo", "Gives your gun infinite ammo.", {"M9", "Remington 870", "AK-47"}, function(v)
         local module = nil
         if game:GetService("Players").LocalPlayer.Backpack:FindFirstChild(v) then
             module = require(game:GetService("Players").LocalPlayer.Backpack[v].GunStates)
@@ -26,7 +26,7 @@ if game.PlaceId == 155615604 then
         end
     end)
 
-    MainSection:NewDropdown("Automatic Mode (Cosmetic)", "Makes your gun automatic (Doesn't give damage)", {"M9", "Remington 870", "AK-47"}, function(v)
+    MainSection:NewDropdown("Automatic Mode (Cosmetic)", "Makes your gun automatic (Doesn't give damage).", {"M9", "Remington 870", "AK-47"}, function(v)
         local module = nil
         if game:GetService("Players").LocalPlayer.Backpack:FindFirstChild(v) then
             module = require(game:GetService("Players").LocalPlayer.Backpack[v].GunStates)
@@ -38,7 +38,7 @@ if game.PlaceId == 155615604 then
         end
     end)
 
-    MainSection:NewDropdown("Gun Mod", "Makes the gun op", {"M9", "Remington 870", "AK-47"}, function(v)
+    MainSection:NewDropdown("Gun Mod", "Makes the gun op.", {"M9", "Remington 870", "AK-47"}, function(v)
         local module = nil
         if game:GetService("Players").LocalPlayer.Backpack:FindFirstChild(v) then
             module = require(game:GetService("Players").LocalPlayer.Backpack[v].GunStates)
@@ -57,17 +57,57 @@ if game.PlaceId == 155615604 then
             module["AutoFire"] = true
         end
     end)
+
+    MainSection:NewButton("Get Car", "Get a car.", function()
+        game.Workspace.ItemHandler("Car Spawner")
+        print("Succesfully spawned a car.")
+    end)
  
     -- PLAYER
     local Player = Window:NewTab("Player")
     local PlayerSection = Player:NewSection("Player")
  
-    PlayerSection:NewSlider("Walkspeed", "Changes the walkspeed", 250, 16, function(v)
+    PlayerSection:NewSlider("Walkspeed", "Changes the walkspeed.", 250, 16, function(v)
         game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = v
     end)
  
-    PlayerSection:NewSlider("Jumppower", "Changes the jumppower", 250, 50, function(v)
+    PlayerSection:NewSlider("Jumppower", "Changes the jumppower.", 250, 50, function(v)
         game.Players.LocalPlayer.Character.Humanoid.JumpPower = v
+    end)
+
+    -- TELEPORTS
+    local Teleport = Window:NewTab("Teleport")
+    local TeleportSection = Teleport:NewSection("Teleport")
+
+    TeleportSection:NewButton("Criminal Base", "Teleports you to criminal base.", function()
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-862.327209, 94.4760513, 2057.60205, -0.0284306481, 1.104994e-07, 0.999595463, 3.04714725e-08, 1, -1.09677458e-07, -0.999595463, 2.73409473e-08, -0.0284306481)
+        print("Succesfully teleported to criminal base!")
+    end)
+
+    TeleportSection:NewButton("Police Office", "Teleports you to police office.", function()
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(836.528687, 99.9900055, 2310.98706, 0.999996483, -9.52042569e-08, -0.00258622225, 9.49064756e-08, 1, -1.15246586e-07, 0.00258622225, 1.15000766e-07, 0.999996483)
+        print("Succesfully teleported to police office!")
+    end)
+
+    TeleportSection:NewButton("Yard", "Teleports you to the yard.", function()
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(781.228943, 97.9999466, 2468.90942, 0.999260187, -6.04257053e-08, -0.0384442061, 5.79348765e-08, 1, -6.59053967e-08, 0.0384442061, 6.36293223e-08, 0.999260187)
+        print("Succesfully teleported to the yard!")
+    end)
+
+    -- VISUAL
+    local Visual = Window:NewTab("Visual")
+    local VisualSection = Visual:NewSection("Visual")
+    local HFOV = 120
+    local FOV = 70
+
+    VisualSection:NewToggle("Hacker FOV", "Sets your FOV to 120", function(v)
+        if v then
+            game.Workspace.Camera.FieldOfView = HFOV
+            print("The fov has been setted to 120")
+        else
+            game.Workspace.Camera.FieldOfView = FOV
+            print("The fov has been setted to default")
+        end
     end)
 
     -- CREDITS
@@ -150,27 +190,6 @@ elseif game.PlaceId == 3956818381 then
  
     PlayerSection:NewSlider("Walkspeed", "Changes the walkspeed", 1000, 16, function(v)
         game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = v
-    end)
-
-    -- CREDITS
-    local CreditsSection = Window:NewTab("Credits")
-    local CreditsSection = CreditsSection:NewSection("Credits")
-
-    CreditsSection:NewLabel("Made by Sarp#5555")
-elseif game.PlaceId == 6737970321 then
-    local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
-    local Window = Library.CreateLib("Livetopia RP", "Sentinel")
-
-    -- PLAYER
-    local Player = Window:NewTab("Player")
-    local PlayerSection = Player:NewSection("Player")
- 
-    PlayerSection:NewSlider("Walkspeed", "Changes the walkspeed", 250, 16, function(v)
-        game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = v
-    end)
- 
-    PlayerSection:NewSlider("Jumppower", "Changes the jumppower", 250, 50, function(v)
-        game.Players.LocalPlayer.Character.Humanoid.JumpPower = v
     end)
 
     -- CREDITS
